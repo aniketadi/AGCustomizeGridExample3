@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AgGridModule } from 'ag-grid-angular';
@@ -16,6 +16,7 @@ import { CustomizedCellComponent } from './customized-cell/customized-cell.compo
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     AgGridModule.withComponents([CustomizedCellComponent])
   ],
   providers: [],

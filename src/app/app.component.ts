@@ -58,5 +58,9 @@ export class AppComponent implements OnInit {
     alert(rowNode.data.scenario_name)
   }  
 
+  quickSearch(){
+    this.gridApi.setQuickFilter(this.searchValue);
+  }
+
 
 }
