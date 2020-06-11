@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   public columnDefs;
   public gridApi;
   public gridColumnApi;
+  public sortingOrd;
   public searchValue;
   public frameworkComponents;
 
@@ -21,13 +22,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.columnDefs = [
-      {headerName: 'Client Id', field: 'client_id', width:70, sortingOrder:["asc","desc"] },
-      {headerName: 'Organization Id', field: 'organization_id' , width:70},
+      {headerName: 'Client Id', field: 'client_id', width:70, sortingOrder:["asc","desc"] , rowDrag :true},
+      {headerName: 'Organization Id', field: 'organization_id' , width:70, rowDrag :true},
       {headerName: 'Scenario Id', field: 'scenario_id' , width:70},
       {headerName: 'Scenario Name', field: 'scenario_name' , width:200 , sortingOrder:["desc","asc"], cellRenderer:"customizedScenarioId"},
       {headerName: 'Scenario Description', field: 'scenario_desc' , width:200},
       {headerName: 'Module Id', field: 'drive_module_id', width:70},
-      {headerName: 'Created By', field: 'created_by', width:120},
+      {headerName: 'Created By', field: 'created_by', width:120, lockPosition:true, suppressNavigable:true},
       {headerName: 'Created On', field: 'created_on', width:220},
       {headerName: 'Last Updated By', field: '_last_updated_by', width:130},
       {headerName: 'Last Updated On', field: '_last_updated_on', width:220 , sortingOrder:["desc",null]},
@@ -36,6 +37,7 @@ export class AppComponent implements OnInit {
     this.frameworkComponents = {
       customizedScenarioId : CustomizedCellComponent
     }
+    this.sortingOrd = ["asc","desc",null]
   }// end ngOnInit()
 
 
@@ -49,5 +51,12 @@ export class AppComponent implements OnInit {
       params.api.setRowData(data)
     })
   }// end onGridReady()
+
+
+  getData(){
+    var rowNode = this.gridApi.getDisplayedRowAtIndex(5);
+    alert(rowNode.data.scenario_name)
+  }  
+
 
 }
