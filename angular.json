@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AGCustomizeGridExample3"
+    }
+  },
+  "defaultProject": "AGCustomizeGridExample3",
+  "cli": {
+    "analytics": "15cb9c5e-2dad-479c-ab72-e748d12d7387"
+  }
 }
