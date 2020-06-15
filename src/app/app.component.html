@@ -21,6 +21,9 @@
 
 <h1> AgGrid + angular: movable column ,dragable row, resize column width </h1>
 Global Search  <input type="text" placeholder="filter"  (keyup) ="quickSearch()" [(ngModel)]="searchValue" /> 
+<button (click)="showScenarioName()"> Show Scenario Name</button> 
+<button (click)="hideScenarioName()"> Hide Scenario Name</button> 
+
 <ag-grid-angular
     style="width: 100%; height: 300px;"
     class="ag-theme-balham"

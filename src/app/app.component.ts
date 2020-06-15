@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   public groupColumnDefs;
   public gridApi;
   public gridColumnApi;
+  public gridOptions;
   public sortingOrd;
   public searchValue;
   public frameworkComponents;
@@ -33,9 +34,9 @@ export class AppComponent implements OnInit {
       {headerName: 'Scenario Description', field: 'scenario_desc' , width:200},
       {headerName: 'Module Id', field: 'drive_module_id', width:70,  filter:"agNumberColumnFilter"},
       {headerName: 'Created By', field: 'created_by', width:120},
-      {headerName: 'Created On', field: 'created_on', width:220},
-      {headerName: 'Last Updated By', field: '_last_updated_by', width:130},
-      {headerName: 'Last Updated On', field: '_last_updated_on', width:220 , sortingOrder:["desc",null]},
+      {headerName: 'Created On', field: 'created_on', width:220 ,  filter:"agDateColumnFilter"},
+      {headerName: 'Last Updated By', field: '_last_updated_by', width:130 },
+      {headerName: 'Last Updated On', field: '_last_updated_on', width:220 , sortingOrder:["desc",null] ,  filter:"agDateColumnFilter"},
       {headerName: 'Last Updated By', field: '_last_updated_by', width:130}
     ] 
 
@@ -95,5 +96,14 @@ export class AppComponent implements OnInit {
     this.gridApi.setQuickFilter(this.searchValue);
   }
 
+  showScenarioName(){
+    this.gridColumnApi.setColumnsVisible(["scenario_name", "created_by"], true);
+    this.gridApi.api.sizeColumnsToFit();
+  }
+
+  hideScenarioName(){
+    this.gridColumnApi.setColumnsVisible(["scenario_name", "created_by"], false);
+    this.gridApi.api.sizeColumnsToFit();
+  }
 
 }
