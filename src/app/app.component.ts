@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CustomizedCellComponent } from './customized-cell/customized-cell.component';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,6 +11,7 @@ import { CustomizedCellComponent } from './customized-cell/customized-cell.compo
 export class AppComponent implements OnInit {
   title = 'AGCustomizeGridExample';
   public columnDefs;
+  public dynamicColumnDefs;
   public groupColumnDefs;
   public gridApi;
   public gridColumnApi;
@@ -21,17 +23,18 @@ export class AppComponent implements OnInit {
 
  
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient ){
 
   }// end constructor()
 
   ngOnInit(){
+    this.dynamicColumnDefs = []
     this.columnDefs = [
       {headerName: 'Client Id', field: 'client_id', width:70, sortingOrder:["asc","desc"] , rowDrag :true },
       {headerName: 'Organization Id', field: 'organization_id' , width:70, rowDrag :true},
       {headerName: 'Scenario Id', field: 'scenario_id' , width:130,   checkboxSelection: true,lockPosition:true, suppressNavigable:true},
       {headerName: 'Scenario Name', field: 'scenario_name' , width:200 , sortingOrder:["desc","asc"], cellRenderer:"customizedScenarioId"},
-      {headerName: 'Scenario Description', field: 'scenario_desc' , width:200},
+      {headerName: 'Scenario Description', field: 'scenario_desc' , width:200, editable:true},
       {headerName: 'Module Id', field: 'drive_module_id', width:70,  filter:"agNumberColumnFilter"},
       {headerName: 'Created By', field: 'created_by', width:120},
       {headerName: 'Created On', field: 'created_on', width:220 ,  filter:"agDateColumnFilter"},
@@ -81,15 +84,24 @@ export class AppComponent implements OnInit {
      .get("http://localhost:2424/aggrid")
     //.get("http://localhost:2424/lineTreeGrid")
     .subscribe(data=> {
-      console.warn(data)
-      params.api.setRowData(data)
+        // Working dynamic column code
+        // var columnData = data[0]
+        // for(var key in columnData){
+        //   this.dynamicColumnDefs.push({ headerName:key.toLocaleUpperCase().replace("_" , " ") , field:key})
+        // }
+        // params.api.setColumnDefs(this.dynamicColumnDefs)
+        console.warn(data)
+        params.api.setRowData(data)
     })
   }// end onGridReady()
 
+  onDoubleClicked(event:any){
+    console.warn('row',event);
+    alert(event.data.scenario_id +'---->'+ event.data.scenario_name);
+  }
 
   getData(){
     var rowNode = this.gridApi.getDisplayedRowAtIndex(5);
-    alert(rowNode.data.scenario_name)
   }  
 
   quickSearch(){

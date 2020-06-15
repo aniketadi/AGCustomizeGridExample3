@@ -13,6 +13,7 @@
     rowSelection="multiple"
     [autoGroupColumnDef]="autoGroupColumnDef"
     [frameworkComponents]="frameworkComponents"
+    (rowDoubleClicked) = "onDoubleClicked($event)"
     (gridReady) = "onGridReady($event)"
     >
 </ag-grid-angular>
@@ -27,7 +28,7 @@ Global Search  <input type="text" placeholder="filter"  (keyup) ="quickSearch()"
 <ag-grid-angular
     style="width: 100%; height: 300px;"
     class="ag-theme-balham"
-    [columnDefs]="columnDefs"
+    [columnDefs]="columnDefs" 
     [enableSorting]="true"
     [enableFilter]="true"
     [animateRows]="true"
@@ -37,6 +38,7 @@ Global Search  <input type="text" placeholder="filter"  (keyup) ="quickSearch()"
     [rowDragManaged] = "true"
     [frameworkComponents]="frameworkComponents"
     [enableColResize]="true"
+    
     (gridReady) = "onGridReady($event)"
     >
 </ag-grid-angular> -->
