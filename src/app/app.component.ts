@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
       {headerName: 'Scenario Id', field: 'scenario_id' , width:130,   checkboxSelection: true,lockPosition:true, suppressNavigable:true},
       {headerName: 'Scenario Name', field: 'scenario_name' , width:200 , sortingOrder:["desc","asc"], cellRenderer:"customizedScenarioId"},
       {headerName: 'Scenario Description', field: 'scenario_desc' , width:200},
-      {headerName: 'Module Id', field: 'drive_module_id', width:70},
+      {headerName: 'Module Id', field: 'drive_module_id', width:70,  filter:"agNumberColumnFilter"},
       {headerName: 'Created By', field: 'created_by', width:120},
       {headerName: 'Created On', field: 'created_on', width:220},
       {headerName: 'Last Updated By', field: '_last_updated_by', width:130},
