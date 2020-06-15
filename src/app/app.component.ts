@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
 
   }// end constructor()
 
+
   ngOnInit(){
     this.dynamicColumnDefs = []
     this.columnDefs = [
@@ -42,7 +43,6 @@ export class AppComponent implements OnInit {
       {headerName: 'Last Updated On', field: '_last_updated_on', width:220 , sortingOrder:["desc",null] ,  filter:"agDateColumnFilter"},
       {headerName: 'Last Updated By', field: '_last_updated_by', width:130}
     ] 
-
 
     this.groupColumnDefs = [
       {headerName: 'Category Name', field: 'category_name' , width:250,  rowGroup: true, hide: true , checkboxSelection: true,lockPosition:true, suppressNavigable:true},
@@ -116,6 +116,17 @@ export class AppComponent implements OnInit {
   hideScenarioName(){
     this.gridColumnApi.setColumnsVisible(["scenario_name", "created_by"], false);
     this.gridApi.api.sizeColumnsToFit();
+  }
+
+  onAddRow(){
+   //this.gridApi.updateRowData({add: [{  client_id :'', organization_id:'' , scenario_id : '' ,scenario_name : '' ,scenario_desc : '' ,drive_module_id : ''  ,created_by : '' ,created_on : '',_last_updated_by : '' ,_last_updated_on : ''}]});
+    var selectedRecord = this.gridApi.getSelectedRows();
+    this.gridApi.updateRowData({add:selectedRecord});
+  }
+
+  onDeleteRow(){
+    var selectedRecord = this.gridApi.getSelectedRows();
+    this.gridApi.updateRowData({remove:selectedRecord});
   }
 
 }

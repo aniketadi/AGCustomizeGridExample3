@@ -24,7 +24,8 @@
 Global Search  <input type="text" placeholder="filter"  (keyup) ="quickSearch()" [(ngModel)]="searchValue" /> 
 <button (click)="showScenarioName()"> Show Scenario Name</button> 
 <button (click)="hideScenarioName()"> Hide Scenario Name</button> 
-
+<button class="btn btn-warning mr-2" (click)="onAddRow()"> Add Row </button> 
+<button (click)="onDeleteRow()"> Delete Row </button> 
 <ag-grid-angular
     style="width: 100%; height: 300px;"
     class="ag-theme-balham"
@@ -33,12 +34,12 @@ Global Search  <input type="text" placeholder="filter"  (keyup) ="quickSearch()"
     [enableFilter]="true"
     [animateRows]="true"
     [pagination]="true"
-    [paginationPageSize]="3"
+    [paginationPageSize]="50"
     [sortingOrder] = "sortingOrd"
     [rowDragManaged] = "true"
     [frameworkComponents]="frameworkComponents"
-    [enableColResize]="true"
-    
+    [enableColResize]="true"  
+    rowSelection="multiple"
     (gridReady) = "onGridReady($event)"
     >
 </ag-grid-angular> -->
